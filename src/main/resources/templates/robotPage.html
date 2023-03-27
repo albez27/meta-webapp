@@ -25,28 +25,26 @@
     <div class="row g-5">
       <div class="">
         <h4 class="mb-3">Выберите параметры</h4>
-        <form class="needs-validation" novalidate="" method="get">
+        <form  class="needs-validation" novalidate="" method="post" th:object="${data}">
           <div class="row g-3">
-
-
             <div class="col-12">
               <label for="fltType" class="form-label">Тип атрибута</label>
-              <input type="text" class="form-control" id="fltType" placeholder="Введите тип атрибута">
+              <input type="text" class="form-control" id="fltType" placeholder="Введите тип атрибута" name="fltType" th:value="${data?.fltType}">
               <br/>
             </div>
             <div class="col-12">
               <label for="oldAtr" class="form-label">ID старого атрибута</label>
-              <input type="text" class="form-control" id="oldAtr" placeholder="Введите id старого атрибута">
+              <input type="text" class="form-control" id="oldAtr" placeholder="Введите id старого атрибута" name="oldAtr" th:value="${data?.oldAtr}">
               <br/>
             </div>
             <div class="col-12">
               <label for="newAtr" class="form-label">ID нового атрибута</label>
-              <input type="text" class="form-control" id="newAtr" placeholder="Введите id нового атрибута">
+              <input type="text" class="form-control" id="newAtr" placeholder="Введите id нового атрибута" name="newAtr" th:value="${data?.newAtr}">
               <br/>
             </div>
             <div class="col-md-5">
               <label for="tomcat" class="form-label">Томкат</label>
-              <select class="form-select" id="tomcat" required="">
+              <select class="form-select" id="tomcat" required name="tomcat">
                 <option value="">Выберите...</option>
                 <option th:each="i : ${#numbers.sequence(2, 20, 1)}">
                   <span th:text="${ i }"></span>
@@ -59,32 +57,32 @@
           <hr class="my-4">
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="block" name="block">
+            <input type="checkbox" class="form-check-input" id="block" name="block" value="1" th:checked="${data?.block}">
             <label class="form-check-label" for="block">Блочный тип?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="reverse">
+            <input type="checkbox" class="form-check-input" name="reverse" value="1" id="reverse" th:checked="${data?.reverse}">
             <label class="form-check-label" for="reverse">Нужен реверс? (для атрибутов у которых более 2500 симвоволов и в мете данные делятся на части)</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="chainy">
+            <input type="checkbox" class="form-check-input" name="chainy" value="1" id="chainy" th:checked="${data?.chainy}">
             <label class="form-check-label" for="chainy">Цепочечный тип?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="needCheck">
+            <input type="checkbox" class="form-check-input" name="needCheck" value="1" id="needCheck" th:checked="${data?.needCheck} ? 'checked'">
             <label class="form-check-label" for="needCheck">Проверка на пустоту?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="needArray">
+            <input type="checkbox" class="form-check-input" name="needArray" value="1" id="needArray" th:checked="${data?.needArray}">
             <label class="form-check-label" for="needArray">Переложить массивом?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="needEdit">
+            <input type="checkbox" class="form-check-input" name="needEdit" value="1" id="needEdit" th:checked="${data?.needEdit}">
             <label class="form-check-label" for="needEdit">Редактировать объекты?</label>
           </div>
 
