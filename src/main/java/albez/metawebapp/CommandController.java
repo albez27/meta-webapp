@@ -20,11 +20,15 @@ public class CommandController {
         HashMap<String, String> dataMapFromForm = setMap(formData);
         System.out.println(dataMapFromForm);
         model.addAttribute("data", dataMapFromForm);
+        RobotFields robot = new RobotFields(dataMapFromForm);
+        String com = robot.getCom().toString();
+        model.addAttribute("com", com); // исправить
+        System.out.println(robot.getCom().toString());
         return "robotPage";
     }
     public HashMap<String, String> setMap(HashMap<String, String> formData){
         String helpKey = "";
-        List<String> keys = Arrays.asList("fltType", "oldAtr", "newAtr", "tomcat", "block", "reverse",
+        List<String> keys = Arrays.asList("fltType", "oldAtr", "newAtr", "tomcat", "ids", "block", "reverse",
                 "chainy", "needCheck", "needArray", "needEdit");
         HashMap<String, String> mapWithKeys = new HashMap<>();
         for(String key : keys){

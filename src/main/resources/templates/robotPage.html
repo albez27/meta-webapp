@@ -25,7 +25,7 @@
     <div class="row g-5">
       <div class="">
         <h4 class="mb-3">Выберите параметры</h4>
-        <form  class="needs-validation" novalidate="" method="post" th:object="${data}">
+        <form  class="needs-validation" novalidate="" method="post">
           <div class="row g-3">
             <div class="col-12">
               <label for="fltType" class="form-label">Тип атрибута</label>
@@ -52,43 +52,48 @@
               </select>
             </div>
 
+            <div class="col-12">
+              <label for="ids" class="form-label">IDS</label>
+              <input type="text" class="form-control" id="ids" placeholder="Введите id нового атрибута" name="ids" th:value="${data?.ids}">
+              <br/>
+            </div>
+
           </div>
 
           <hr class="my-4">
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="block" name="block" value="1" th:checked="${data?.block}">
+            <input type="checkbox" class="form-check-input" id="block" name="block" value="1" th:checked="${data?.block == '1'}">
             <label class="form-check-label" for="block">Блочный тип?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="reverse" value="1" id="reverse" th:checked="${data?.reverse}">
+            <input type="checkbox" class="form-check-input" name="reverse" value="1" id="reverse" th:checked="${data?.reverse == '1'}">
             <label class="form-check-label" for="reverse">Нужен реверс? (для атрибутов у которых более 2500 симвоволов и в мете данные делятся на части)</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="chainy" value="1" id="chainy" th:checked="${data?.chainy}">
+            <input type="checkbox" class="form-check-input" name="chainy" value="1" id="chainy" th:checked="${data?.chainy == '1'}">
             <label class="form-check-label" for="chainy">Цепочечный тип?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="needCheck" value="1" id="needCheck" th:checked="${data?.needCheck} ? 'checked'">
+            <input type="checkbox" class="form-check-input" name="needCheck" value="1" id="needCheck" th:checked="${data?.needCheck == '1'} ? 'checked'">
             <label class="form-check-label" for="needCheck">Проверка на пустоту?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="needArray" value="1" id="needArray" th:checked="${data?.needArray}">
+            <input type="checkbox" class="form-check-input" name="needArray" value="1" id="needArray" th:checked="${data?.needArray == '1'}">
             <label class="form-check-label" for="needArray">Переложить массивом?</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="needEdit" value="1" id="needEdit" th:checked="${data?.needEdit}">
+            <input type="checkbox" class="form-check-input" name="needEdit" value="1" id="needEdit" th:checked="${data?.needEdit == '1'}">
             <label class="form-check-label" for="needEdit">Редактировать объекты?</label>
           </div>
 
-
+          <div class="highlight"><pre></pre></div>
           <hr class="my-4">
-
           <button class="w-100 btn btn-primary btn-lg" type="submit">Сгенерировать команду</button>
         </form>
       </div>
