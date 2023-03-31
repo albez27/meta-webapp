@@ -22,7 +22,7 @@ public class CommandController {
         model.addAttribute("data", dataMapFromForm);
         RobotFields robot = new RobotFields(dataMapFromForm);
         String com = robot.getCom().toString();
-        model.addAttribute("com", com); // исправить
+        model.addAttribute("com", robot); // исправить
         System.out.println(robot.getCom().toString());
         return "robotPage";
     }

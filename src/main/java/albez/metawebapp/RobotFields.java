@@ -15,6 +15,7 @@ public class RobotFields {
     private String needArray;
     private String needEdit;
     private final String receiver =  "copyoldatr2newatr@bgoperator.com";
+    private StringBuilder com;
     public RobotFields(HashMap<String,String> data){
         this.tomcat = data.get("tomcat");
         this.type = data.get("fltType");
@@ -28,7 +29,7 @@ public class RobotFields {
         this.needArray = data.get("needArray").equals("") ? "0" : "1";
         this.needEdit = data.get("needEdit").equals("") ? "0" : "1";
     }
-    public StringBuilder getCom(){
+    public String getCom(){
         StringBuilder com = new StringBuilder();
         com.append("/usr/java/jdk1.7.0_80/bin/java -cp /w2/srv/tomcat" + tomcat
                 + "/webapps/bg/WEB-INF/classes:/w2/srv/tomcat" + tomcat
@@ -36,7 +37,7 @@ public class RobotFields {
                 + "/webapps/bg/WEB-INF/lib/* util.Robot bg_main co_bg CopyOldAtr2NewAtr "
                 + type + " " + oldAtr + " " + newAtr + " " + block + " " + ids + " " + reverse
                 + " " + needChainy + " " + needCheck + " " + needArray + " " + needEdit + " " + receiver);
-        return com;
+        return com.toString();
     }
 
 }
