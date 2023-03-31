@@ -34,7 +34,7 @@ public class RobotFields {
         com.append("/usr/java/jdk1.7.0_80/bin/java -cp /w2/srv/tomcat" + tomcat
                 + "/webapps/bg/WEB-INF/classes:/w2/srv/tomcat" + tomcat
                 + "/lib/:/w2/srv/tomcat" + tomcat + "/lib/*:/w2/srv/tomcat"
-                + "/webapps/bg/WEB-INF/lib/* util.Robot bg_main co_bg CopyOldAtr2NewAtr "
+                + tomcat + "/webapps/bg/WEB-INF/lib/* util.Robot bg_main co_bg CopyOldAtr2NewAtr "
                 + type + " " + oldAtr + " " + newAtr + " " + block + " " + ids + " " + reverse
                 + " " + needChainy + " " + needCheck + " " + needArray + " " + needEdit + " " + receiver);
         return com.toString();

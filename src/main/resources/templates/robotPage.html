@@ -55,16 +55,14 @@
             <div class="col-md-5">
               <label for="tomcat" class="form-label">Томкат</label>
               <select class="form-select" id="tomcat" required name="tomcat">
-                <option value="">Выберите...</option>
-                <option th:each="i : ${#numbers.sequence(2, 20, 1)}">
-                  <span th:text="${ i }"></span>
+                <option th:each="i : ${#numbers.sequence(2, 20, 1)}" th:value="${i}" th:text="${i}" th:selected="${data?.tomcat == i.toString()}">
                 </option>
               </select>
             </div>
 
             <div class="col-12">
               <label for="ids" class="form-label">IDS</label>
-              <input type="text" class="form-control" id="ids" placeholder="Введите id нового атрибута" name="ids" th:value="${data?.ids}">
+              <input type="text" class="form-control" id="ids" placeholder="Введите IDS" name="ids" th:value="${data?.ids}">
               <br/>
             </div>
 
@@ -101,16 +99,16 @@
             <input type="checkbox" class="form-check-input" name="needEdit" value="1" id="needEdit" th:checked="${data?.needEdit == '1'}">
             <label class="form-check-label" for="needEdit">Редактировать объекты?</label>
           </div>
-          <div class="card" style="margin-top: 2vh">
+          <div th:if="${com?.com}" class="card" style="margin-top: 8vh">
             <h5 class="card-header">Результат:</h5>
             <div class="card-body">
               <h5 class="card-title">Сгенерированная команда</h5>
-              <p class="card-text" id="command" th:text="${com.com}"></p>
+              <p class="card-text" id="command" th:text="${com?.com}"></p>
               <button type="button" class="btn btn-primary" onclick="copyText()">Скопировать</button>
             </div>
           </div>
           <hr class="my-4">
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Сгенерировать команду</button>
+          <button class="w-100 btn btn-primary btn-lg" onclick="submitForm()">Сгенерировать команду</button>
         </form>
       </div>
     </div>
@@ -134,6 +132,19 @@
               .catch(err => {
                 console.error('Failed to copy text: ', err);
               });
+    }
+    function submitForm() {
+      let tomcat = document.getElementById('tomcat').value;
+      let fltType = document.getElementById('fltType').value;
+      let oldAtr = document.getElementById('oldAtr').value;
+      let newAtr = document.getElementById('newAtr').value;
+
+      if (tomcat === "" || fltType === "" || oldAtr === "" || newAtr === "") {
+        alert("Заполните все необходимые поля");
+        event.preventDefault();
+      } else {
+        this.submitForm()
+      }
     }
   </script>
 </div>
